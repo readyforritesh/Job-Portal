@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+/* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #1a1a1a; /* Dark background */
+  color: #e0e0e0; /* Light text color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Full viewport height */
+}
+
+/* Registration Form Container */
+.registration-form {
+  background-color: #1e1e1e; /* Slightly lighter black for container */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px; /* Limit container width */
+  text-align: center;
+}
+
+/* Heading Styles */
+h2 {
+  color: #ffd700; /* Gold color for heading */
+  margin-bottom: 20px;
+}
+
+/* Input and Select Styles */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background-color: #333; /* Dark background for inputs */
+  color: #e0e0e0; /* Light text color */
+  outline: none; /* Remove default outline */
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus,
+input[type="file"]:focus {
+  border-color: #ffd700; /* Gold border on focus */
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+/* Placeholder Styles */
+input::placeholder,
+select {
+  color: #888; /* Light gray placeholder text */
+}
+
+/* Checkbox Styles */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.checkbox-label span {
+  color: #e0e0e0; /* Light text color */
+}
+
+/* Button Styles */
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #ffd700; /* Gold color for button */
+  color: #121212; /* Dark text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+button[type="submit"]:hover {
+  background-color: #e6b800; /* Darker gold on hover */
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.7); /* Glow effect */
+}
+
+/* Link Styles */
+.link {
+  display: block;
+  margin-top: 15px;
+  color: #ffd700; /* Gold color for link */
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.link:hover {
+  color: #e6b800; /* Darker gold on hover */
+}
+    </style>
+</head>
+<body>
+    <div class="registration-form button-glow">
+        <h2>Registration Form</h2>
+        <form action="/auth/register" method="POST" enctype="multipart/form-data">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email address" required>
+            
+           
+            <input type="password" name="password" placeholder="Password" required>
+            <select name="role" required>
+                <option value="">Select Role</option>
+                <option value="JobSeeker">JobSeeker</option>
+                <option value="Employer">Employer</option>
+                <!-- <option value="Admin">Admin</option> -->
+            </select>
+            <input type="file" name="validDocument" >
+            <div class="checkbox-label">
+                <input type="checkbox" name="terms" required>
+                <span>Agree to terms and conditions</span>
+            </div>
+            <button type="submit">Create Account</button>
+        </form>
+        <a href="/login" class="link">Already have an account? Sign in</a>
+    </div>
+</body>
+</html>

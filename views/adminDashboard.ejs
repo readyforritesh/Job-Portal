@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #1a1a1a; /* Dark background */
+      color: #e0e0e0; /* Light text color */
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      background-color: #121212; /* Darker black for navbar */
+      padding: 20px;
+      box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .navbar-brand {
+      color: #ffd700; /* Gold color for brand */
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .navbar-nav {
+      display: flex;
+      flex-direction: column; /* Stack items vertically */
+      gap: 10px; /* Space between nav items */
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-item {
+      list-style: none; /* Remove bullet points */
+    }
+
+    .nav-link {
+      color: #e0e0e0; /* Light text color */
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+      display: block; /* Ensure full width clickable area */
+    }
+
+    .nav-link:hover {
+      background-color: #ffd700; /* Gold background on hover */
+      color: #121212; /* Dark text on hover */
+    }
+
+    .logout {
+      color: #ff6b6b; /* Red color for logout */
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+      display: block; /* Ensure full width clickable area */
+    }
+
+    .logout:hover {
+      background-color: #ff6b6b; /* Red background on hover */
+      color: #121212; /* Dark text on hover */
+    }
+
+    /* Main Content Styles */
+    .container {
+      padding: 20px;
+    }
+
+    h1, h2, h3 {
+      color: #ffd700; /* Gold color for headings */
+    }
+
+    .table {
+      width: 100%;
+      color: #e0e0e0; /* Light text color */
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    .table th,
+    .table td {
+      padding: 12px;
+      text-align: left;
+      border: 1px solid #333; /* Dark borders */
+    }
+
+    .table th {
+      background-color: #121212; /* Darker black for headers */
+      color: #ffd700; /* Gold color for header text */
+    }
+
+    .table tbody tr:hover {
+      background-color: #2a2a2a; /* Slightly lighter black for hover */
+    }
+
+    .btn-danger {
+      background-color: #ff6b6b; /* Red color for delete button */
+      color: #121212; /* Dark text */
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn-danger:hover {
+      background-color: #ff4c4c; /* Lighter red on hover */
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar (Left Window Panel) -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#">Admin Dashboard</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="#users">Users</a></li>
+        <li class="nav-item"><a class="nav-link" href="#companies">Companies</a></li>
+        <li class="nav-item"><a class="nav-link" href="#jobs">Jobs</a></li>
+        <li class="nav-item"><a href="/logout" class="logout">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container mt-4">
+    <!-- Users Section -->
+    <section id="users" class="form-container">
+      <h2>Users</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% users.forEach(user => { %>
+              <tr>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td>
+                  <form action="/admin/users/<%= user.id %>/edit" method="POST">
+                    <select name="role" onchange="this.form.submit()" class="form-select form-select-sm">
+                      <option value="JobSeeker" <%= user.role === 'JobSeeker' ? 'selected' : '' %>>JobSeeker</option>
+                      <option value="Employer" <%= user.role === 'Employer' ? 'selected' : '' %>>Employer</option>
+                      <option value="Admin" <%= user.role === 'Admin' ? 'selected' : '' %>>Admin</option>
+                    </select>
+                  </form>
+                </td>
+                <td>
+                  <form action="/admin/users/<%= user.id %>/delete" method="POST">
+                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Companies Section -->
+    <section id="companies" class="form-container mt-5">
+      <h2>Companies</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Company Name</th>
+              <th>Address</th>
+              <th>Contact Info</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% companies.forEach(company => { %>
+              <tr>
+                <td><%= company.companyName %></td>
+                <td><%= company.address %></td>
+                <td><%= company.contactInfo %></td>
+                <td>
+                  <form action="/admin/companies/<%= company.companyId %>/delete" method="POST">
+                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Jobs Section -->
+    <section id="jobs" class="form-container mt-5">
+      <h2>Jobs</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Job Title</th>
+              <th>Company</th>
+              <th>Location</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% jobs.forEach(job => { %>
+              <tr>
+                <td><%= job.jobTitle %></td>
+                <td><%= job.Company.companyName %></td>
+                <td><%= job.location %></td>
+                <td>
+                  <form action="/admin/jobs/<%= job.id %>/delete" method="POST">
+                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

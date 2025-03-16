@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Dots:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Login Form</title>
+    <style>
+/* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #1a1a1a; /* Dark background */
+  color: #e0e0e0; /* Light text color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Full viewport height */
+}
+
+/* Container Styles */
+.container {
+  background-color: #1e1e1e; /* Slightly lighter black for container */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px; /* Limit container width */
+  text-align: center;
+}
+
+/* User Icon Styles */
+.user-icon {
+  font-size: 3rem; /* Larger icon size */
+  color: #ffd700; /* Gold color for icon */
+  margin-bottom: 20px;
+}
+
+/* Heading Styles */
+h3 {
+  color: #ffd700; /* Gold color for heading */
+  margin-bottom: 20px;
+}
+
+/* Input Group Styles */
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #333; /* Dark background for input group */
+  border-radius: 5px;
+  padding: 10px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-group:hover {
+  border: 1px solid #ffd700; /* Gold border on hover */
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+.icon {
+  color: #ffd700; /* Gold color for icons */
+  margin-right: 10px;
+}
+
+input[type="email"],
+input[type="password"] {
+  flex-grow: 1; /* Allow input to take remaining space */
+  padding: 10px;
+  border: none;
+  background-color: transparent; /* Transparent background */
+  color: #e0e0e0; /* Light text color */
+  outline: none; /* Remove default outline */
+}
+
+input[type="email"]::placeholder,
+input[type="password"]::placeholder {
+  color: #888; /* Light gray placeholder text */
+}
+
+/* Button Styles */
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #ffd700; /* Gold color for button */
+  color: #121212; /* Dark text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+button[type="submit"]:hover {
+  background-color: #e6b800; /* Darker gold on hover */
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.7); /* Glow effect */
+}
+
+/* Create Account Link Styles */
+a {
+  display: block;
+  margin-top: 15px;
+  color: #ffd700; /* Gold color for link */
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #e6b800; /* Darker gold on hover */
+}
+    </style>
+</head>
+<body>
+    <div class="container button-glow">
+        <form action="/auth/login" method="POST">
+        <center><i class="fas fa-user user-icon" id="avatar"></i></center>
+        <h3>Login Here</h3>
+        <div class="input-group">
+            <i class="fas fa-envelope icon"></i>
+            <input type="email" name="email" placeholder=" Your email..." >
+        </div>
+        <div class="input-group">
+            <i class="fas fa-lock icon"></i>
+            <input type="password" name="password"placeholder="Password"  >
+        </div>
+        <button type="submit" >Login</button>
+        <a href="../register">Create Account</a>
+    </form>
+    </div>
+</body>
+</html>
